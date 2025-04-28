@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
-#BOT_TOKEN='8046018994:AAFtjQnXG-h6SXe2Fyxu_rHpus4SsSjIdiI'
+BOT_TOKEN='8046018994:AAFtjQnXG-h6SXe2Fyxu_rHpus4SsSjIdiI'
 USER_DB_FILE ='./users.json'
 def load_users():
     if not os.path.exists(USER_DB_FILE):
