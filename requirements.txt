@@ -1,0 +1,8 @@
+pandas==2.2.3
+selenium
+webdriver-manager
+keep-alive
+requests
+twilio
+python-telegram-bot
+python-dotenv
