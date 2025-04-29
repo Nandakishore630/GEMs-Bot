@@ -1,3 +1,4 @@
+
 import pandas as pd
 import shutil
 from selenium import webdriver
@@ -15,6 +16,11 @@ from twilio.rest import Client
 from bot import start_bot
 from telegram.ext import Application, CommandHandler
 import os
+import threading
+from bot import start_bot
+from server import start_server
+threading.Thread(target=start_bot).start()
+threading.Thread(target= start_server).start()
 
 TOKEN = os.environ.get("BOT_TOKEN")  # Set this in Render dashboard under Environment
 app = Application.builder().token(TOKEN).build()
