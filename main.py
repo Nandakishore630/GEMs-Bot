@@ -13,9 +13,22 @@ import requests
 import traceback
 from twilio.rest import Client
 from bot import start_bot
+from telegram.ext import Application, CommandHandler
+import os
 
- 
+TOKEN = os.environ.get("BOT_TOKEN")  # Set this in Render dashboard under Environment
+app = Application.builder().token(TOKEN).build()
 
+async def start(update, context):
+    await update.message.reply_text("Hello from Render!")
+
+app.add_handler(CommandHandler("start", start))
+
+app.run_webhook(
+    listen="0.0.0.0",
+    port=8080,
+    webhook_url=f"https://GEMs-Bot.onrender.com/{TOKEN}"
+)
 
 def scrape_attendance(reg_no, password):
     url = "http://mitsims.in/"
