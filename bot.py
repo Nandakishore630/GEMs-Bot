@@ -1,5 +1,6 @@
 import os
 import json
+import asyncio
 from telegram import Update,InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler, MessageHandler, filters, ContextTypes, CallbackQueryHandler
 
@@ -172,7 +173,7 @@ async def overall_attendance(update: Update, context: ContextTypes.DEFAULT_TYPE)
         await update.message.reply_text("❌ You haven't sent your credentials yet!\nPlease send: username,password")
 
 
- 
+''' 
 def start_bot():
     app = ApplicationBuilder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", start))
@@ -185,3 +186,22 @@ def start_bot():
     app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), friendly_reply))
     print("✅ Bot is running")
     app.run_polling()
+'''
+async def main():
+    app = ApplicationBuilder().token(BOT_TOKEN).build()
+    app.add_handler(CommandHandler("start", start))
+    app.add_handler(CommandHandler("help", help_command)) 
+    app.add_handler(CommandHandler("subjectwise", subjectwise_attendance))  
+    app.add_handler(CommandHandler("overall", overall_attendance)) 
+    app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), handle_message))
+    app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), message_router))
+    app.add_handler(MessageHandler(filters.TEXT & (~filters.COMMAND), friendly_reply))
+    app.add_handler(CallbackQueryHandler(button))
+
+    print("✅ Bot is running")
+    await app.initialize()
+    await app.start()
+    await app.updater.start_polling()
+    await app.updater.idle()
+
+asyncio.run(main())
