@@ -7,8 +7,7 @@ services:
     envVars:
       - key: BOT_TOKEN
         value: 8046018994:AAFtjQnXG-h6SXe2Fyxu_rHpus4SsSjIdiI # Replace with your actual bot token
-      - key: OTHER_ENV_VAR
-        value: your-other-env-var-value  # Add other necessary environment variables
+       # Add other necessary environment variables
     plan: free  # Adjust your plan based on your needs
 
   - type: web
@@ -18,7 +17,7 @@ services:
     startCommand: python keep_alive.py
     envVars:
       - key: BOT_TOKEN
-        value: your-telegram-bot-token  # Reuse or specify new token for keep-alive service if needed
+        value: 8046018994:AAFtjQnXG-h6SXe2Fyxu_rHpus4SsSjIdiI  # Reuse or specify new token for keep-alive service if needed
     plan: free  # Adjust your plan
 
   # Optional: Add another service for `main.py` if it's a separate service
@@ -29,5 +28,5 @@ services:
     startCommand: python main.py
     envVars:
       - key: BOT_TOKEN
-        value: your-telegram-bot-token  # Replace with your actual bot token
+        value: 8046018994:AAFtjQnXG-h6SXe2Fyxu_rHpus4SsSjIdiI  # Replace with your actual bot token
     plan: free  # Adjust your plan
